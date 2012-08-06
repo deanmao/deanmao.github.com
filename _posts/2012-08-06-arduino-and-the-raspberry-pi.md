@@ -62,7 +62,7 @@ Essentially we're removing all references to ttyAMA0.  Depending on what distro 
 you may have more references to ttyAMA0.  It might be a good idea to grep all files to see where
 else it might be used:
 
-    fgrep -rn ttyAMA0 *
+    fgrep -rn ttyAMA0 /etc /boot
 
 Finally, we'll want to disable the magic sysrq key as spurious signals on the serial line can
 sometimes trigger the kernel into thinking that the sysrq key was fired, and the kernel will "hang"
