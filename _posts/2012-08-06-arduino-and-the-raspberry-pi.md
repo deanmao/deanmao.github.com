@@ -7,6 +7,6 @@ tags: []
 ---
 {% include JB/setup %}
 
-## Blah 
+## So 
 
 This is a test here...
