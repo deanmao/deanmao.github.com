@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "javascript rewriting"
+title: "Javascript code generation"
 description: ""
 category: 
 tags: []
