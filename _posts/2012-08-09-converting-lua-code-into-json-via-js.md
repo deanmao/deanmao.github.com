@@ -19,7 +19,7 @@ JSON object and thought this might be an interesting and quick way to get it don
 
 ### Code conversion
 
-I converted (esprima)[https://github.com/deanmao/esprima] so that one could pass in lua code as a string and would return a json object 
+I [forked esprima](https://github.com/deanmao/esprima) so that one could pass in lua code as a string and would return a json object 
 converted from a lua table object.  I was surprised how simple it was to convert esprima to become 
 a lua parser.  The author did a great job of maintaining code quality and readability.
 
