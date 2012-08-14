@@ -93,7 +93,7 @@ hard to imagine anything slicker than this!
   bc.make("Step 1", function () {
     content.html('Collect underpants.');
   });
-  bc.make("Step 2", function () {
+  bc.make("Step 2 (click me!)", function () {
     content.html('???');
   });
   bc.make("Step 3", function () {
