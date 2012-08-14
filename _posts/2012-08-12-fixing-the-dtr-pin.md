@@ -75,3 +75,21 @@ We'd get an output that looks like this:
 We can actually see when avrdude performs ioctl on the DTR pin and now we can act on it.  Using some simple hackery, we will rename avrdude to
 avrdude-original, and run a python script to emulate this behavior as if it were the actual avrdude program.  To see full instructions
 on how this is accomplished, visit my github repository for this example: [https://github.com/deanmao/avrdude-rpi](https://github.com/deanmao/avrdude-rpi).
+
+When you flash your arduino now, the output should look like this:
+
+    root@raspberrypi:~/arduino# make upload
+    done with autoreset
+
+    avrdude-original: AVR device initialized and ready to accept instructions
+    avrdude-original: Device signature = 0x1e950f
+    avrdude-original: NOTE: FLASH memory has been specified, an erase cycle will be performed
+                      To disable this feature, specify the -D option.
+    avrdude-original: erasing chip
+    avrdude-original: reading input file "build-cli/arduino.hex"
+    avrdude-original: writing flash (1078 bytes):
+    avrdude-original: 1078 bytes of flash written
+
+    avrdude-original: safemode: Fuses OK
+
+Mission accomplished!
