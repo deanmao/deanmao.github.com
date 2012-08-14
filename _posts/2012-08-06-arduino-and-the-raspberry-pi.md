@@ -77,3 +77,5 @@ Finally, we'll install the command-line tools needed to upload your arduino sket
 ### Wiring up the arduino
 
 We'll cover this in another post soon!
+
+Follow up article: [Uploading Sketches to the Arduino on the Pi](/2012/08/10/uploading-sketches-to-the-arduino-on-the-pi/).
