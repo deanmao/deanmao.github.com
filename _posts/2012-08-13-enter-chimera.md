@@ -14,7 +14,14 @@ This is a follow up article to [Enhanced Web Scraping in Node.js](/2012/08/07/en
 I was inspired by [PhantomJS](http://phantomjs.org) and wanted something similar, but could be run inside of the nodejs
 environment, without calling out to an external process.  PhantomJS is run as an external process that users can run
 under any language, however one must create a fancy glue wrapper so that development isn't impaired.  I created
-something that does exactly what phantomjs is capable of doing, except in a full js environment.
+something that does exactly what phantomjs is capable of doing, except in a full js environment, called [Chimera](http://github.com/deanmao/node-chimera).
+
+If you're installing via npm, you can easily install it like this:
+
+    npm install chimera
+    
+It does take quite a bit of time to download because it includes precompiled binaries for macosx, linux 32bit, and linux 64bit.  Each binary contains
+everything needed to run chimera including parts of the Qt toolkit.
 
 An example is the best way to show how easy this is using chimera:  (coffeescript shown below)
 
@@ -103,3 +110,5 @@ Then we can assign the cookies in a completely new browser window like this:
         callback(null, "success")
       callback: (err, result) ->
         console.log("done")
+        
+
