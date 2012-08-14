@@ -158,3 +158,25 @@ Then we apply a gradient to the triangle.  If the triangle is clickable, we indi
         stroke: '#a3a6a5'
       )
 
+And here's how it's used.  It's fairly simple and can be easily adapted for any single-page site:
+
+    var bc = new Breadcrumb("breadcrumb_canvas");
+    var content = $('#mycontent');
+    bc.make("Step 1", function () {
+      content.html('Collect underpants.');
+    });
+    bc.make("Step 2 (click me!)", function () {
+      content.html('???');
+    });
+    bc.make("Step 3", function () {
+      content.html('PROFIT!');
+    });
+    bc.make("Step 4", function () {
+      content.html('Should not get here!');
+    });
+    bc.get("Step 4").makeDisabled();
+    bc.get("Step 1").makeActive();
+
+Simply instantiate the breadcrumb passing in the id field of the html canvas element, then create
+your steps, step action functions, and choose the steps you want active or disabled.  Easy to use!
+
