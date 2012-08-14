@@ -87,28 +87,28 @@ Sending code the the arduino is simple.  Simply run the command "make upload" an
 that will be sent to the arduino using a tool called avrdude.  Since you're running this on the command line, you'll see all the 
 commands run by the Makefile when you run "make upload".  
 
-      root@raspberrypi:~/mysketch# make upload
-      Makefile:535: build-cli/depends.mk: No such file or directory
-      echo '#include <Arduino.h>' > build-cli/blink.cpp
-      cat  blink.ino >> build-cli/blink.cpp
-      /usr/bin/avr-g++ -MM -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=100 -I. -I/usr/share/arduino/hardware/arduino/cores/arduino -I/usr/share/arduino/hardware/arduino/variants/standard   -g -Os -w -Wall -ffunction-sections -fdata-sections -fno-exceptions build-cli/blink.cpp -MF build-cli/blink.d -MT build-cli/blink.o
-      cat build-cli/blink.d > build-cli/depends.mk
-      rm build-cli/blink.cpp
-      cat build-cli/blink.d > build-cli/depends.mk
-      for STTYF in 'stty -F' 'stty --file' 'stty -f' 'stty <' ; \
-                        do $STTYF /dev/tty >/dev/null 2>&1 && break ; \
-      		done ; \
-      		$STTYF /dev/ttyAMA0  hupcl ; \
-      		(sleep 0.1 2>/dev/null || sleep 1) ; \
-      		$STTYF /dev/ttyAMA0 -hupcl 
-      echo '#include <Arduino.h>' > build-cli/blink.cpp
-      cat  blink.ino >> build-cli/blink.cpp
-      /usr/bin/avr-gcc -mmcu=atmega328p -Wl,--gc-sections -Os -o build-cli/mysketch.elf build-cli/blink.o build-cli/libcore.a  -lc -lm
-      /usr/bin/avr-objcopy -O ihex -R .eeprom build-cli/mysketch.elf build-cli/mysketch.hex
-      /usr/bin/avrdude -q -V -p atmega328p -C /etc/avrdude.conf -c arduino -b 115200 -P /dev/ttyAMA0  \
-      			-U flash:w:build-cli/mysketch.hex:i
-      done with autoreset
-      avrdude-original: stk500_recv(): programmer is not responding
+    root@raspberrypi:~/mysketch# make upload
+    Makefile:535: build-cli/depends.mk: No such file or directory
+    echo '#include <Arduino.h>' > build-cli/blink.cpp
+    cat  blink.ino >> build-cli/blink.cpp
+    /usr/bin/avr-g++ -MM -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=100 -I. -I/usr/share/arduino/hardware/arduino/cores/arduino -I/usr/share/arduino/hardware/arduino/variants/standard   -g -Os -w -Wall -ffunction-sections -fdata-sections -fno-exceptions build-cli/blink.cpp -MF build-cli/blink.d -MT build-cli/blink.o
+    cat build-cli/blink.d > build-cli/depends.mk
+    rm build-cli/blink.cpp
+    cat build-cli/blink.d > build-cli/depends.mk
+    for STTYF in 'stty -F' 'stty --file' 'stty -f' 'stty <' ; \
+                      do $STTYF /dev/tty >/dev/null 2>&1 && break ; \
+    		done ; \
+    		$STTYF /dev/ttyAMA0  hupcl ; \
+    		(sleep 0.1 2>/dev/null || sleep 1) ; \
+    		$STTYF /dev/ttyAMA0 -hupcl 
+    echo '#include <Arduino.h>' > build-cli/blink.cpp
+    cat  blink.ino >> build-cli/blink.cpp
+    /usr/bin/avr-gcc -mmcu=atmega328p -Wl,--gc-sections -Os -o build-cli/mysketch.elf build-cli/blink.o build-cli/libcore.a  -lc -lm
+    /usr/bin/avr-objcopy -O ihex -R .eeprom build-cli/mysketch.elf build-cli/mysketch.hex
+    /usr/bin/avrdude -q -V -p atmega328p -C /etc/avrdude.conf -c arduino -b 115200 -P /dev/ttyAMA0  \
+    			-U flash:w:build-cli/mysketch.hex:i
+    done with autoreset
+    avrdude-original: stk500_recv(): programmer is not responding
       
 You might see the error message above:  "programmer is not responding".  This is because one must temporarily flip the reset pin on
 the arduino before code can be uploaded.  When we wired up the arduino, it was hooked up to one of our GPIO pins.  It's possible to
