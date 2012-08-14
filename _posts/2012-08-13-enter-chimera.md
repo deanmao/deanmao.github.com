@@ -16,6 +16,19 @@ environment, without calling out to an external process.  PhantomJS is run as an
 under any language, however one must create a fancy glue wrapper so that development isn't impaired.  I created
 something that does exactly what phantomjs is capable of doing, except in a full js environment, called [Chimera](http://github.com/deanmao/node-chimera).
 
+There are similar "glues" like [phantomjs-node](https://github.com/sgentle/phantomjs-node) that integrate phantomjs
+by spawning a process, and processing the stdout stream, but it is limited by what can be done via the command line of
+phantomjs.  If you really want direct api access to the browser, the best way is via direct integration.
+
+PhantomJS merely invokes QtWebkit behind the scenes, and provides an api layer that allows users to move the mouse, take
+a screenshot, execute js code, etc.  In Chimera, we are doing essentially the same thing, except that QtWebkit runs in
+the same node process, and control flow is governed by libuv and QMutex.  There should be very little lag time between
+node and webkit as we've implemented it using the same async-style code that everyone is already accustomed with in node.
+
+Since this is a true browser, one can actually play youtube videos, move the mouse cursor around, etc -- anything that you
+could do in your chrome browser, you can do here.  For fast web scraping, there's nothing better than running an actual
+headless browser window.
+
 If you're installing via npm, you can easily install it like this:
 
     npm install chimera
