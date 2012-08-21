@@ -8,10 +8,10 @@ tags: []
 
 ### Broke in the Replicator
 
-The Hacker Dojo most recently acquired a MakerBot Replicator, a 3D
+The Hacker Dojo most recently acquired a [MakerBot Replicator](http://store.makerbot.com/replicator-404.html), a 3D
 printer that has dual extruders and a larger platform.  The printer
 arrived last week, but this was my first chance using it.  I printed a
-[simple grocery bag tool]() that I found on thingiverse.  It seemed like
+[simple grocery bag tool](http://www.thingiverse.com/thing:26767) that I found on thingiverse.  It seemed like
 a simple enough model for a first print, but I still managed to mess up
 the first item that came out.
 
