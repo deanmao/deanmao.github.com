@@ -9,7 +9,7 @@ tags: []
 
 ### Node Native Extensions in Mountain Lion
 
-I'm the maintainer for the [node-sass](https://github.com/andrew/node-sass) library which uses the
+I'm a maintainer for the [node-sass](https://github.com/andrew/node-sass) library which uses the
 highly portable C++ [libsass](https://github.com/hcatlin/libsass) library to convert sass into css.
 I ran into an issue today that may affect other extension writers trying to get their stuff working
 in Mountain Lion.  The previous precompiled binaries would result in a segfault that doesn't really
