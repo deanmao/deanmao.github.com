@@ -221,5 +221,5 @@ Yes, this is a man in the middle attack.  You can create a website that serves u
 and trick the end user into visiting it.  If the user doesn't realize they're not on mail.google.com, they
 would be sending all kinds of private data to a server somewhere.  Even sites that implement something like
 [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for their login, there are work-arounds
-that handle this in Xtendme.  So please, use this for good.  I don't want moms sending me angry emails.
+that handle this in Xtendme.  So please, use this for good.  I don't want angry moms sending me emails.
 
