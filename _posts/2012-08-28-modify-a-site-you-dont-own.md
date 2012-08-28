@@ -80,6 +80,8 @@ is -- it's the same way you'd do it on any other express app.
 
 For reference, you can find everything discussed here in my [example app on github](http://github.com/deanmao/xtend-example).
 I'll show a brief example how you can implement your own site extension, then show you a running example of it.
+The xtend-example uses the [xtendme library](http://github.com/deanmao/xtend) which does all the heavy 
+lifting.  
 
 First we'll have to create a Guide.  Guides describe how to transform html & js code.  When you load html
 from the xtend system, it loads html from the remote site, transforms it into something slightly different,
