@@ -174,6 +174,21 @@ is the INTERNAL_URL_PREFIX matcher.  The xtend connect module will intercept all
 for the ones that have the INTERNAL_URL_PREFIX as part of the request url.  In this case, we will send
 the user the inject.js code if the name matches in the url.
 
+The inject.js file includes the code that we're injecting into remote sites.  In our example, it contains
+the following:
+
+    // ... (code for jquery goes here) ...
+    window.myjquery = $.noConflict();
+    function receiveMessage(event) {
+      // this is normally bad, so don't copy me here:
+      eval(event.data);
+    }
+    window.addEventListener("message", receiveMessage, false);
+
+Essentially I'm just eval'ing code sent via postMessage() so I can inject code from any remote domain
+that may contain the iframe.  Obviously if you were implementing this yourself, you'd want to compare
+event.origin to restrict it, but as a proof of concept you can see what's possible here.
+
 As you can see, it's extremely easy to implement this yourself.  It's only around 30 lines of
 coffeescript and we've got a site that proxies and rewrites another site!
 
