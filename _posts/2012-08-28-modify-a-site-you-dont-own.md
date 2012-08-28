@@ -192,5 +192,34 @@ event.origin to restrict it, but as a proof of concept you can see what's possib
 As you can see, it's extremely easy to implement this yourself.  It's only around 30 lines of
 coffeescript and we've got a site that proxies and rewrites another site!
 
+### Other implementations
 
+Proxying a site and rewriting all its content is not a new concept.  There have been other implementations
+at various degrees of success.  The oldest implementation I can think of is 
+[jmarshall's cgiproxy](http://www.jmarshall.com/tools/cgiproxy/).  It's a huge perl script that essentially 
+does the same thing as xtendme, but it's written in perl and it's 16,000 lines of code.  I already have a 
+headache reading 200 lines of perl so trying to decipher that beast will be a nightmare! (unless you're the
+author)  Xtendme is a mere 1500 lines of coffeescript, and it's fairly modular should one decide to tweak the
+code.  
+
+After running cgiproxy, you'll soon see that it is not quite capable of dealing with javascript-heavy sites
+like gmail or google plus.  Most of the web is moving toward client-heavy code so it's fairly important
+that the proxy can handle a site like gmail.  Xtendme actually works quite well on gmail, so I'm fairly 
+confident it will handle other javascript sites as well, but it does have one weak point -- it doesn't have
+the best html parser so some sites may still cause it to break.  It relies on the popular
+[node-htmlparser](https://github.com/tautologistics/node-htmlparser/) project that many other popular projects 
+(like jsdom) rely on.  Please consider donating time into improving tautologistics' htmlparser.  
+One small fix will improve many node libraries.
+
+I feel that javascript is the best language to write this proxy in because most of the web consists of html and
+javascript so it's only natural for a system that transforms the web should be written in the language of
+the web.  I haven't seen a good reverse-proxy for node, so I figured this would be a nice little project.
+
+### Security concerns
+
+Yes, this is a man in the middle attack.  You can create a website that serves up gmail running this proxy
+and trick the end user into visiting it.  If the user doesn't realize they're not on mail.google.com, they
+would be sending all kinds of private data to a server somewhere.  Even sites that implement something like
+[CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for their login, there are work-arounds
+that handle this in Xtendme.  So please, use this for good.  I don't want moms sending me angry emails.
 
