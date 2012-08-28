@@ -208,8 +208,8 @@ that the proxy can handle a site like gmail.  Xtendme actually works quite well 
 confident it will handle other javascript sites as well, but it does have one weak point -- it doesn't have
 the best html parser so some sites may still cause it to break.  It relies on the popular
 [node-htmlparser](https://github.com/tautologistics/node-htmlparser/) project that many other popular projects 
-(like jsdom) rely on.  Please consider donating time into improving tautologistics' htmlparser.  
-One small fix will improve many node libraries.
+(like jsdom) rely on.  Please consider donating time into improving tautologistics' htmlparser. One small fix 
+will improve many node libraries.
 
 I feel that javascript is the best language to write this proxy in because most of the web consists of html and
 javascript so it's only natural for a system that transforms the web should be written in the language of
