@@ -41,7 +41,8 @@ immediately:
 
 Check this out:
 
-<textarea id="yourcode" style="width: 600px; height: 100px;">
+<textarea id="yourcode" style="width: 600px; height: 110px; font-size: 12px; font-family: monospace">
+  // Edit me!
   jQuery('td > center > a').click(function(e) {
     e.preventDefault();
     jQuery('body').prepend('<b>You just tried to upvote something!</b><br>');
