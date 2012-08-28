@@ -202,7 +202,7 @@ headache reading 200 lines of perl so trying to decipher that beast will be a ni
 author)  Xtendme is a mere 1500 lines of coffeescript, and it's fairly modular should one decide to tweak the
 code.  
 
-After running cgiproxy, you'll soon see that it is not quite capable of dealing with javascript-heavy sites
+You'll also realize that cgiproxy is not quite capable of dealing with javascript-heavy sites
 like gmail or google plus.  Most of the web is moving toward client-heavy code so it's fairly important
 that the proxy can handle a site like gmail.  Xtendme actually works quite well on gmail, so I'm fairly 
 confident it will handle other javascript sites as well, but it does have one weak point -- it doesn't have
