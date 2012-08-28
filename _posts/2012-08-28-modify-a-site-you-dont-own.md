@@ -75,11 +75,11 @@ every request, no caching.  If I were to enable production mode, it would at lea
 on reddit, I might have to turn on production mode.
 
 Also, don't bother trying to login on HN, I didn't turn on ssl, but the example github code will show how easy this
-is -- it's the same way you'd do it on any other express app.
+is -- it's the same way you'd do it on any other [express](http://expressjs.com) app.
 
 ### Implement this yourself
 
-For reference, you can find everything discussed here in my [example app on github](http://github.com/deanmao/xtend-example).
+For reference, you can find everything discussed here in my [xtend example app on github](http://github.com/deanmao/xtend-example).
 I'll show a brief example how you can implement your own site extension, then show you a running example of it.
 The xtend-example uses the [xtendme library](http://github.com/deanmao/xtend) which does all the heavy 
 lifting.  
@@ -112,7 +112,8 @@ The code above is from example_guide.coffee.  The reason you see it doing typeof
 because this file (along with many others) is actually loaded inside the browser window.  This file can
 dictate how to transform html code that may be generated dynamically via javascript inside the browser
 window page.  This allows you to transform any html or js that could be loaded anywhere.  In future
-examples, we'll show how you can transform js code to piggyback on existing functions like "addListener".
+examples, we'll show how you can transform js code to piggyback on existing functions like "addListener".  I briefly
+covered javascript rewriting in a previous blog article that makes use of this library.
 
     if name == 'body' && location == 'end'
       return '<script src="'+@INTERNAL_URL_PREFIX+'/inject.js"></script>'
@@ -126,33 +127,31 @@ locally.
 This next snippet of code is taken from app.coffee, the meat of the system:
 
     injectjs = fs.readFileSync('inject.js').toString()
-    host = 'xtendthis.com'
-    guide = new ExampleGuide
-      host: host
-      fs: fs
-      p: () -> inspect(arguments...)
+    guide = new ExampleGuide(host: 'xtendthis.com', fs: fs)
 
-    configureServer = (server, guide, scripts, protocol) ->
+    xtendme.generateScripts __dirname + '/example_guide.coffee', {host: host}, (scripts) ->
+      server = express.createServer()
       server.configure 'development', ->
         server.use(express.errorHandler(dumpExceptions: true, showStack: true))
         server.use(express.cookieParser())
-        server.use(xtendme.filter(guide: guide, protocol: protocol, scripts: scripts))
+        server.use(xtendme.filter(guide: guide, protocol: 'http', scripts: scripts))
         server.use(express.methodOverride())
         server.use(server.router)
-      prefix = guide.INTERNAL_URL_PREFIX
-      server.get "#{prefix}/:name", (req, res) ->
+      server.get "#{guide.INTERNAL_URL_PREFIX}/:name", (req, res) ->
         name = req.params.name
         if name == 'inject.js'
           res.setHeader('Content-Type', 'text/javascript; charset=UTF-8')
           res.send(injectjs)
-      return server
+      server.listen(8080)
 
-    xtendme.generateScripts __dirname + '/example_guide.coffee', {host: host}, (scripts) ->
-      http = express.createServer()
-      configureServer(http, guide, scripts, 'http').listen(8080)
+The code above was slightly reorganized from the xtend-example app.coffee code since we're illustrating
+an example without SSL.  It's slightly simpler than the example code in the github project, but they
+perform the same.  There's essentially 2 parts to configure: instantiating the Guide that we
+talked about earlier, and configuring the express server.  
 
-The xtendme library is implemented as a connect module.  You utilize it in an express app like any other
-connect module:
+The xtendme library is implemented as a connect module.  You can read more about the 
+[connect middleware at senchalabs](http://www.senchalabs.org/connect/) 
+You utilize it in an express app like any other connect module:
 
     server.use(xtendme.filter(guide: guide, protocol: protocol, scripts: scripts))
 
@@ -164,8 +163,7 @@ all of this stuff running)
 
 I've only added one express action so that I can load inject.js into the user's page:
 
-    prefix = guide.INTERNAL_URL_PREFIX
-    server.get "#{prefix}/:name", (req, res) ->
+    server.get "#{guide.INTERNAL_URL_PREFIX}/:name", (req, res) ->
       name = req.params.name
       if name == 'inject.js'
         res.setHeader('Content-Type', 'text/javascript; charset=UTF-8')
