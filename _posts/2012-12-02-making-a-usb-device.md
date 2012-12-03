@@ -96,3 +96,5 @@ Although this side project isn't yet complete, as I still have to create the phy
 MakerBot Replicator, it feels relatively polished since the end user won't have to muck with the internals to update
 functionality.  The hardware used is pretty fairly cheap, around $15 for the final design.  If the device were to 
 transform into something with more functionality, it might be worth getting the board etched properly in bulk.  
+
+<img src="/images/rfid_wired.jpg">
