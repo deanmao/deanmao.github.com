@@ -78,7 +78,7 @@ To add this linker flag, visit your build target's linking configuration and thi
 
 Here's what it should look like in XCode:
 
-<img src="/images/linker_error.png">
+<img src="/images/linker_fix.png">
 
 Hopefully CocoaPods will consider using this linker flag in the future for the corner case that someone happens to
 be using a combination of pods and home brew frameworks.
